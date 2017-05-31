@@ -9,11 +9,12 @@
 <div class="container">
   <h1>Upcoming Games</h1>
   <div class="row">
-    <% @games.each do |game| %>
+    <% @upcoming_games.each do |game| %>
         <div class="col-xs-4 col-md-3">
           <a href="<%= game_path(game) %>" class="thumbnail">
             <img src="http://via.placeholder.com/250x250">
-            <h3 class="thumbnail-caption"><%= game.title %></h3>
+            <h5 class="thumbnail-caption-top"><%= game.pretty_start %></h5>
+            <h3 class="thumbnail-caption-bottom"><%= game.title %></h3>
           </a>
         </div>
     <% end %>
@@ -23,11 +24,12 @@
 <div class="container">
   <h1>Popular Games</h1>
   <div class="row">
-    <% @games.each do |game| %>
+    <% @popular_games.each do |game| %>
         <div class="col-xs-4 col-md-3">
           <a href="<%= game_path(game) %>" class="thumbnail">
             <img src="http://via.placeholder.com/250x250">
-            <h3 class="thumbnail-caption"><%= game.title %></h3>
+            <h5 class="thumbnail-caption-top"><%= "#{game.players.count} players going" %></h5>
+            <h3 class="thumbnail-caption-bottom"><%= game.title %></h3>
           </a>
         </div>
     <% end %>
@@ -35,13 +37,14 @@
 </div>
 
 <div class="container">
-  <h1>Sports</h1>
+  <h1>Popular Sports</h1>
   <div class="row">
-    <% @sports.each do |sport| %>
+    <% @popular_sports.each do |sport| %>
         <div class="col-xs-4 col-md-3">
           <a href="<%= sport_path(sport) %>" class="thumbnail">
             <img src="http://via.placeholder.com/250x250">
-            <h3 class="thumbnail-caption"><%= sport.name %></h3>
+            <h5 class="thumbnail-caption-top"><%= "#{sport.games.count} total games" %></h5>
+            <h3 class="thumbnail-caption-bottom"><%= sport.name %></h3>
           </a>
         </div>
     <% end %>
