@@ -1,0 +1,13 @@
+<h1>Your Game</h1>
+
+<%= @game.title %><br>
+<%= @game.description %><br>
+<%= @game.start %><br>
+<%= @game.end %><br>
+<%= @game.sport.name %><br>
+
+<% if logged_in? %>
+<p><%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Delete",  game_path(@game), method: :delete %></p>
+<% else %>
+<p>Log in to edit or delete</p>
+<% end %>
