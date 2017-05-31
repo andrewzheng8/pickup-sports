@@ -6,6 +6,7 @@ class GamesController < ApplicationController
     else
       @games = Game.all
     end
+    @posts = Post.all
   end
 
   def new
@@ -23,6 +24,9 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @post = Post.new
+    @posts = Post.all
+    @player_game = PlayerGame.new
   end
 
   def edit

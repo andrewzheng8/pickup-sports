@@ -30,6 +30,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @post = Post.new
   end
 
   # def edit
@@ -43,7 +44,7 @@ class PlayersController < ApplicationController
   private
 
   def player_params
-    params.require(:player).permit(:email, :password)
+    params.require(:player).permit(:name, :birthday, :location, :phone_number, :email, :password)
   end
 
 
