@@ -1,0 +1,7 @@
+<h1>All Locations</h1>
+<% @locations.each do |location| %>
+  <h2><%= link_to location.title, location_path(location) %></h2><br>
+  <%= location.description %><br>
+<% end %>
+
+<%= link_to "Add a location", new_location_path %>

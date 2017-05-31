@@ -1,0 +1,14 @@
+<h1>Your Location</h1>
+
+<%= @location.title %><br>
+<%= @location.description %><br>
+<%= @location.address %><br>
+<%= @location.latitude %><br>
+<%= @location.longitude %><br>
+
+
+<% if logged_in? %>
+<p><%= link_to "Edit", edit_location_path(@location) %> | <%= link_to "Delete",  location_path(@location), method: :delete %></p>
+<% else %>
+<p>Log in to edit or delete</p>
+<% end %>
