@@ -30,6 +30,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @post = Post.new
   end
 
   # def edit
