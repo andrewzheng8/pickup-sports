@@ -1,16 +1,3 @@
-<h1>Sign Up!</h1>
-  <%= form_for(@player) do |f| %>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :birthday %><br>
-  <%= f.datetime_local_field :birthday %><br>
-  <%= f.label :location %><br>
-  <%= f.text_field :location %><br>
-  <%= f.label :phone_number %><br>
-  <%= f.number_field :phone_number %><br>
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%= f.submit "Sign Up" %>
-<% end %>
+<h1>New Player</h1>
+
+<%= render partial: "form" %>
