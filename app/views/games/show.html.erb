@@ -6,7 +6,7 @@
 <%= @game.end %><br>
 <%= @game.sport.name %><br>
 
-<p>Player's: </p>
+<p>Players: </p>
 <% @game.players.each do |player| %>
   <%= link_to player.email, player_path(player) %><br>
 <% end %>
