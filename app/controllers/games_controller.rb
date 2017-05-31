@@ -19,6 +19,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @player_game = PlayerGame.new
   end
 
   def edit

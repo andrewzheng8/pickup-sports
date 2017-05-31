@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     post '/login', to:"sessions#create"
     delete '/logout', to:"sessions#destroy"
 
+
+
     resources :players
     resources :games
     resources :sports
+    resources :player_games
+
+
 end
