@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 gem 'geocoder'
+gem 'gmaps4rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
