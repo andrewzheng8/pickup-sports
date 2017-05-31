@@ -1,7 +1,11 @@
 class GamesController < ApplicationController
   before_action :verify, except: [:index, :show]
   def index
-    @games = Game.all
+    if params[:games]
+      @games = Game.where("LOWER(title) LIKE ?", "%#{params[:games].downcase}%")
+    else
+      @games = Game.all
+    end
   end
 
   def new

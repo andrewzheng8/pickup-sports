@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   def index
     if params[:players]
-      @players = Player.where("email LIKE ?", "%#{params[:players]}%")
+      @players = Player.where("LOWER(email) LIKE ?", "%#{params[:players].downcase}%")
     else
       @players = Player.all
     end
