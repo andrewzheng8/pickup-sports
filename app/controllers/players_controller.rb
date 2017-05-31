@@ -34,6 +34,20 @@ class PlayersController < ApplicationController
     @user_friend =UserFriend.new
   end
 
+  def up_points
+    @player = Player.find(params[:id])
+    @player.up_points = @player.up_points + 1
+    @player.save
+    redirect_to player_path(@player)
+  end
+
+  def down_points
+    @player = Player.find(params[:id])
+    @player.down_points = @player.down_points + 1
+    @player.save
+    redirect_to player_path(@player)
+  end
+
   # def edit
   #   @player = Player.find(params[:id])
   # end

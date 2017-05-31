@@ -1,5 +1,16 @@
 <h1>Profile </h1>
 
+<%= form_tag upvote_path do %>
+<%= submit_tag "Vote Up: #{@player.up_points}" %>
+<%= hidden_field_tag :id, @player.id %>
+<% end %>
+<%= form_tag downvote_path do %>
+<%= submit_tag "Vote Down: #{@player.down_points}" %>
+<%= hidden_field_tag :id, @player.id %>
+<% end %>
+
+
+
 <% if @player.id == current_player.id %>
   <p>Your Profile</p>
 <% elsif UserFriend.find_by(player_id: current_player.id, friend: @player.id) %>
