@@ -1,15 +1,3 @@
-<h1>Create a New Game</h1>
+<h1>New Game</h1>
 
-<%= form_for(@game) do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :description %><br>
-  <%= f.text_field :description %><br>
-  <%= f.label :start %><br>
-  <%= f.datetime_local_field :start %><br>
-  <%= f.label :end %><br>
-  <%= f.datetime_local_field :end %><br>
-  <%= f.label :sport_id, "Choose a sport:" %><br>
-  <%= f.collection_select :sport_id, Sport.all, :id, :name %><br>
-  <%= f.submit %>
-<% end %>
+<%= render partial: "form" %>

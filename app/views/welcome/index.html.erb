@@ -1,4 +1,49 @@
-<h2>Hello World</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
+<div class="jumbotron">
+  <div class="container">
+    <h1>Find your game</h1>
+    <p>We match players by location, sport, and skill level</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Create a Game</a></p>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Upcoming Games</h1>
+  <div class="row">
+    <% @games.each do |game| %>
+        <div class="col-xs-4 col-md-3">
+          <a href="<%= game_path(game) %>" class="thumbnail">
+            <img src="http://via.placeholder.com/250x250">
+            <h3 class="thumbnail-caption"><%= game.title %></h3>
+          </a>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Popular Games</h1>
+  <div class="row">
+    <% @games.each do |game| %>
+        <div class="col-xs-4 col-md-3">
+          <a href="<%= game_path(game) %>" class="thumbnail">
+            <img src="http://via.placeholder.com/250x250">
+            <h3 class="thumbnail-caption"><%= game.title %></h3>
+          </a>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Sports</h1>
+  <div class="row">
+    <% @sports.each do |sport| %>
+        <div class="col-xs-4 col-md-3">
+          <a href="<%= sport_path(sport) %>" class="thumbnail">
+            <img src="http://via.placeholder.com/250x250">
+            <h3 class="thumbnail-caption"><%= sport.name %></h3>
+          </a>
+        </div>
+    <% end %>
+  </div>
+</div>
