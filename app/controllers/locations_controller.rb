@@ -19,7 +19,12 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+
     @locations_arr = [@location]
+    if has_current_location?
+      @curr_loc = current_location
+      @locations_arr << @curr_loc
+    end
     @hash = Gmaps4rails.build_markers(@locations_arr) do |location, marker|
       marker.lat location.latitude
       marker.lng location.longitude

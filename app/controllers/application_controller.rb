@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_player
   helper_method :logged_in?
-  heloer_method :has_current_location?
+  helper_method :has_current_location?
+  helper_method :current_location
 
   def current_player
     @current_player ||= Player.find(session[:player_id]) if session[:player_id]
