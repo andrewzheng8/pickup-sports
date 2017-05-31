@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   before_action :verify, except: [:index, :show]
   def index
     @games = Game.all
+    @posts = Post.all
   end
 
   def new
@@ -19,6 +20,9 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @post = Post.new
+    @posts = Post.all
+    @player_game = PlayerGame.new
   end
 
   def edit

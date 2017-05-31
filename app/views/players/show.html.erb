@@ -1,5 +1,26 @@
 <h1>Profile</h1>
 <%= @player.email %><br>
+<%= @player.name %><br>
+<%= @player.birthday %><br>
+<%= @player.location %><br>
+<%= @player.phone_number %><br>
+
+<%= form_for(@post) do |f| %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :content %><br>
+  <%= f.text_field :content %><br>
+  <%= f.hidden_field :player_id, :value => @player.id %>
+  <%= f.submit %>
+<% end %>
+
+<% @player.posts.each do |post| %><br>
+  <h4><%= post.title %></h4>
+  <%= post.created_at %><br>
+  <%= post.content %>
+<% end %>
+
+
 <% @player.games.each do |game| %>
 <% if game.end > Time.now %>
   <p>Status: Upcoming</p>
