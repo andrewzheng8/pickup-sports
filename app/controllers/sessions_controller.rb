@@ -8,20 +8,22 @@ class SessionsController < ApplicationController
     if player && player.authenticate(params[:password])
       session[:player_id] = player.id
       flash[:success] = "You've successfully logged in"
-      redirect_to games_path
+      redirect_back(fallback_location: root_path)
     else
       flash[:danger] = "Incorrect email or password"
-      redirect_to new_player_path
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     session[:player_id] = nil
-    location = Location.find(session[:loc_id])
-    location.destroy
+    if has_current_location?
+      location = Location.find(session[:loc_id])
+      location.destroy
+    end
     session[:loc_id] = nil
     flash[:success] = "You've successfully logged out"
-    redirect_to games_path
+    redirect_back(fallback_location: root_path)
   end
 
   def current_loc
@@ -29,10 +31,10 @@ class SessionsController < ApplicationController
     if @location.save
       session[:loc_id] = @location.id
       flash[:success] = "You've successfully entered a location"
-      redirect_to games_path
+      redirect_back(fallback_location: root_path)
     else
       flash[:danger] = "Couldn't find a location based on address"
-      redirect_to games_path
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -41,7 +43,7 @@ class SessionsController < ApplicationController
     location.destroy
     session[:loc_id] = nil
     flash[:success] = "You can enter a different location now"
-    redirect_to games_path
+    redirect_back(fallback_location: root_path)
   end
 
 end
