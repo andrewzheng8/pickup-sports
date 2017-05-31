@@ -1,3 +1,8 @@
-<h1>View Sport</h1>
+<h1><%= @sport.name %></h1>
 
-<%= @sport.name %>
+<h3>Games</h3>
+<ul>
+  <% @sport.games.each do |game| %>
+  <li><%= link_to game.title, game_path(game) %><br></li>
+  <% end %>
+</ul>
