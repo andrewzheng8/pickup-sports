@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_player
   helper_method :logged_in?
+  heloer_method :has_current_location?
 
   def current_player
     @current_player ||= Player.find(session[:player_id]) if session[:player_id]
@@ -18,4 +19,13 @@ class ApplicationController < ActionController::Base
       redirect_to games_path
     end
   end
+
+  def current_location
+    @current_location ||= Location.find(session[:loc_id]) if session[:loc_id]
+  end
+
+  def has_current_location?
+    !!current_location
+  end
+
 end

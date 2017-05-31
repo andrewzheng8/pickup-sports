@@ -33,6 +33,19 @@
               <%= submit_tag "Log In", class: 'btn btn-default' %>
             </div>
           <% end %>
+
+          <% if has_current_location? %>
+            <p class="navbar-text navbar-right">
+              <%= "Looking for games around, #{current_location.address}" %>
+              <%= link_to "Change Location", loc_change_path, method: :delete %>
+            </p>
+          <% else %>
+            <%= form_tag loc_input_path, class: 'navbar-form navbar-right' do %>
+              <div class="form-group">
+                <%= text_field_tag :address, nil, placeholder: "address", class: "form-control" %>
+                <%= submit_tag "Enter Location", class: 'btn btn-default' %>
+              </div>
+            <% end %>
         <% end %>
 
       </div>
