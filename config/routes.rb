@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     resources :sports
     resources :locations
     resources :player_games
+    resources :user_friends
 
 end
