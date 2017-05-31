@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:success] = "You've successfully logged in"
       redirect_to games_path
     else
-      flash[:error] = "Incorrect email or password"
+      flash[:danger] = "Incorrect email or password"
       redirect_to new_player_path
     end
   end

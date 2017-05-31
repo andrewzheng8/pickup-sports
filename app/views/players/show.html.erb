@@ -1,2 +1,14 @@
-<h1>Players#show</h1>
-<p>Find me in app/views/players/show.html.erb</p>
+<h1>Profile</h1>
+<%= @player.email %><br>
+<% @player.games.each do |game| %>
+<% if game.end > Time.now %>
+  <p>Status: Upcoming</p>
+<% else %>
+  <p>Status: Past</p>
+<% end %>
+<h3><%= game.title %></h3><br>
+<%= game.description %><br>
+<%= game.start %><br>
+<%= game.end %><br>
+<br>
+<% end %>

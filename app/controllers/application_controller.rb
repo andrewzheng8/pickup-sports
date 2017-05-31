@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def verify
     unless logged_in?
-      flash[:error] = "Please Log In"
+      flash[:danger] = "Please Log In"
       redirect_to games_path
     end
   end

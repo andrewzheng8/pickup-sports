@@ -6,6 +6,11 @@
 <%= @game.end %><br>
 <%= @game.sport.name %><br>
 
+<p>Player's: </p>
+<% @game.players.each do |player| %>
+  <%= link_to player.email, player_path(player) %><br>
+<% end %>
+
 <% if logged_in? %>
 <p><%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Delete",  game_path(@game), method: :delete %></p>
 <% else %>

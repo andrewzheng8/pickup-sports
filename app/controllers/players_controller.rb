@@ -1,6 +1,10 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all
+    if params[:players]
+      @players = Player.where("email LIKE ?", "%#{params[:players]}%")
+    else
+      @players = Player.all
+    end
   end
 
   def new
@@ -9,7 +13,7 @@ class PlayersController < ApplicationController
 
   def create
     if Player.find_by(email: params[:player][:email])
-      flash[:error] = "This email address already exists"
+      flash[:danger] = "This email address already exists"
       redirect_to new_player_path
     else
     @player = Player.new(player_params)
