@@ -103,7 +103,11 @@
   <div class="form-group">
     <%= f.text_area :content, placeholder: "Content", class: "form-control" %>
   </div>
+  <% if @player.id == current_player.id %>
+  <%= f.hidden_field :player_id, :value => current_player.id %>
+  <% else %>
   <%= f.hidden_field :player_id, :value => @player.id %>
+  <% end %>
   <%= f.submit class: "btn btn-default" %>
 <% end %>
 <% end %>
