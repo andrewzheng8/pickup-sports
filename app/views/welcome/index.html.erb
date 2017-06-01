@@ -13,9 +13,7 @@
   <% @upcoming_games.each do |game| %>
       <div class="col-xs-4 col-md-3">
         <a href="<%= game_path(game) %>" class="thumbnail">
-          <div class="thumbnail-image">
-            <img src="<%= game.sport.image %>">
-          </div>
+          <img src="<%= game.sport.image %>">
           <h5 class="thumbnail-caption-top"><%= game.pretty_start %></h5>
           <h3 class="thumbnail-caption-bottom"><%= game.title %></h3>
         </a>
