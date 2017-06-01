@@ -6,22 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# variables for time usage
+now = Time.now
+hour = 60*60
+day = 24*hour
+year = 365*day
+tomorrow = now + day
+
+# sports
 soccer = Sport.create(name: "Soccer")
 basketball = Sport.create(name: "Basketball")
+football = Sport.create(name: "Football")
+baseball = Sport.create(name: "Baseball")
+tennis = Sport.create(name: "Tennis")
+frisbee = Sport.create(name: "Frisbee")
+hockey = Sport.create(name: "Hockey")
+kickball = Sport.create(name: "Kickball")
 
-s = Game.create(title: "Soccer Game", description: "Playing soccer at the park", start: Time.now, end: Time.now+(60*60*2), sport_id: soccer.id)
-b = Game.create(title: "Basketball Game", description: "Playing basketball at the park", start: Time.now+(60*60*48), end: Time.now+(60*60*50), sport_id: basketball.id)
+# games
+soccer1 = Game.create(title: "Soccer Game 1", description: "Meet up and play some soccer", start: tomorrow, end: tomorrow+hour, sport_id: soccer.id)
+basketball1 = Game.create(title: "Basketball Game 1", description: "Meet up and play some basketball", start: tomorrow+day, end: tomorrow+day+hour, sport_id: basketball.id)
+basketball2 = Game.create(title: "Basketball Game 2", description: "Meet up and play some basketball", start: tomorrow+day+hour, end: tomorrow+day+(2*hour), sport_id: basketball.id)
+football1 = Game.create(title: "Football Game 1", description: "Meet up and play some football", start: tomorrow+day, end: tomorrow+day+hour, sport_id: football.id)
+football2 = Game.create(title: "Football Game 2", description: "Meet up and play some football", start: tomorrow+(2*day), end: tomorrow+(2*day)+hour, sport_id: football.id)
+baseball1 = Game.create(title: "Baseball Game 1", description: "Meet up and play some baseball", start: tomorrow+day, end: tomorrow+day+(2*hour), sport_id: baseball.id)
+frisbee1 = Game.create(title: "Frisbee Game 1", description: "Meet up and play some frisbee", start: tomorrow, end: tomorrow+hour, sport_id: frisbee.id)
+frisbee2 = Game.create(title: "Frisbee Game 2", description: "Meet up and play some frisbee", start: tomorrow+day, end: tomorrow+day+hour, sport_id: frisbee.id)
+frisbee3 = Game.create(title: "Frisbee Game 3", description: "Meet up and play some frisbee", start: tomorrow+(2*day), end: tomorrow+(2*day)+hour, sport_id: frisbee.id)
 
-alex = Player.create(email: "alex@gmail.com", password: "password")
-andrew = Player.create(email: "andrew@gmail.com", password: "password")
-kyle = Player.create(email: "kyle@gmail.com", password: "password")
+# players
+alex = Player.create(email: "alex@gmail.com", password: "password", name: "Alex", location: "New York, NY", birthday: now-(20*year), phone_number: 5555555, up_points: 0, down_points: 0, skill_level: "Intermediate")
+andrew = Player.create(email: "andrew@gmail.com", password: "password", name: "Andrew", location: "New York, NY", birthday: now-(20*year), phone_number: 5555555, up_points: 0, down_points: 0, skill_level: "Intermediate")
+kyle = Player.create(email: "kyle@gmail.com", password: "password", name: "Kyle", location: "New York, NY", birthday: now-(20*year), phone_number: 5555555, up_points: 0, down_points: 0, skill_level: "Intermediate")
 
-
-alex.games << s
-alex.games << b
-
-andrew.games << s
-andrew.games << b
-
-kyle.games << s
-kyle.games << b
+# player_games
+alex.games << [soccer1, basketball1, frisbee1, frisbee2, frisbee3]
+andrew.games << [soccer1, basketball1, baseball1, frisbee1, frisbee2]
+kyle.games << [basketball2, football1, football2, frisbee1, frisbee2]

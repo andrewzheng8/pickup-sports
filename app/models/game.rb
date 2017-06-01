@@ -16,11 +16,10 @@ class Game < ApplicationRecord
 
   def self.popular_games
     Game.
-    select("games.*, count(players.id)").
+    select("games.*, count(players.id) AS players_count").
     joins(:players).
     group("games.id").
-    order("count(players.id) DESC").
-    limit(10)
+    order("players_count DESC")
   end
 
 end
