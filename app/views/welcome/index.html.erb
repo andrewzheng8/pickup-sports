@@ -2,47 +2,52 @@
   <div class="container">
     <h1>Find your game</h1>
     <p>We match players by location, sport, and skill level</p>
-    <p><a class="btn btn-primary btn-lg" href="<%= new_game_path %>" role="button">Create a Game</a></p>
+    <p><a class="btn btn-primary btn-lg" href="<%= new_game_path %>" role="button">Create a Game Today</a></p>
   </div>
 </div>
 
 <!-- GRID SYSTEM - NUMBER OF RESULTS SHOWN CAN BE ADJUSTED IN WelcomeController -->
+<div class="container">
+  <h1>Upcoming Games</h1>
+  <div class="row sports-grid">
+    <% @upcoming_games.each do |game| %>
+        <div class="col-xs-4 col-md-3">
+          <a href="<%= game_path(game) %>" class="thumbnail">
+            <img src="<%= game.sport.image %>">
+            <h5 class="thumbnail-caption-top"><%= game.pretty_start %></h5>
+            <h3 class="thumbnail-caption-bottom"><%= game.title %></h3>
+          </a>
+        </div>
+    <% end %>
+  </div>
 
-<h1>Upcoming Games</h1>
-<div class="row sports-grid">
-  <% @upcoming_games.each do |game| %>
-      <div class="col-xs-4 col-md-3">
-        <a href="<%= game_path(game) %>" class="thumbnail">
-          <img src="<%= game.sport.image %>">
-          <h5 class="thumbnail-caption-top"><%= game.pretty_start %></h5>
-          <h3 class="thumbnail-caption-bottom"><%= game.title %></h3>
-        </a>
-      </div>
-  <% end %>
-</div>
+  <hr />
 
-<h1>Popular Games</h1>
-<div class="row sports-grid">
-  <% @popular_games.each do |game| %>
-      <div class="col-xs-4 col-md-3">
-        <a href="<%= game_path(game) %>" class="thumbnail">
-          <img src="<%= game.sport.image %>">
-          <h5 class="thumbnail-caption-top"><%= "#{game.players.count} players going" %></h5>
-          <h3 class="thumbnail-caption-bottom"><%= game.title %></h3>
-        </a>
-      </div>
-  <% end %>
-</div>
+  <h1>Popular Games</h1>
+  <div class="row sports-grid">
+    <% @popular_games.each do |game| %>
+        <div class="col-xs-4 col-md-3">
+          <a href="<%= game_path(game) %>" class="thumbnail">
+            <img src="<%= game.sport.image %>">
+            <h5 class="thumbnail-caption-top"><%= "#{game.players.count} players going" %></h5>
+            <h3 class="thumbnail-caption-bottom"><%= game.title %></h3>
+          </a>
+        </div>
+    <% end %>
+  </div>
 
-<h1>Popular Sports</h1>
-<div class="row sports-grid">
-  <% @popular_sports.each do |sport| %>
-      <div class="col-xs-4 col-md-3">
-        <a href="<%= sport_path(sport) %>" class="thumbnail">
-          <img src="<%= sport.image %>">
-          <h5 class="thumbnail-caption-top"><%= "#{sport.games.count} total games" %></h5>
-          <h3 class="thumbnail-caption-bottom"><%= sport.name %></h3>
-        </a>
-      </div>
-  <% end %>
+  <hr />
+
+  <h1>Popular Sports</h1>
+  <div class="row sports-grid">
+    <% @popular_sports.each do |sport| %>
+        <div class="col-xs-4 col-md-3">
+          <a href="<%= sport_path(sport) %>" class="thumbnail">
+            <img src="<%= sport.image %>">
+            <h5 class="thumbnail-caption-top"><%= "#{sport.games.count} total games" %></h5>
+            <h3 class="thumbnail-caption-bottom"><%= sport.name %></h3>
+          </a>
+        </div>
+    <% end %>
+  </div>
 </div>

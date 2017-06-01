@@ -75,8 +75,12 @@
       <div class="alert alert-<%= key %>"><%= val %></div>
     <% end %>
 
-    <div class="container">
+    <% if @landing %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    <% end %>
   </body>
 </html>
