@@ -1,4 +1,7 @@
-<%= form_for(@player) do |f| %>
+<%= form_for @player, :html => {:multipart => true} do |f| %>
+<div class="form-group">
+  <%= f.file_field :avatar, class: "form-control" %>
+</div>
 <div class="form-group">
   <%= f.label :name %>
   <%= f.text_field :name, placeholder: "name", class: "form-control" %>

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170601133000) do
+=======
+ActiveRecord::Schema.define(version: 20170601135102) do
+>>>>>>> carrierwave-gem
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170601133000) do
     t.integer "up_points", default: 0
     t.integer "down_points", default: 0
     t.string "skill_level"
+    t.string "avatar"
   end
 
   create_table "posts", force: :cascade do |t|
