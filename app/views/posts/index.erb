@@ -1,17 +1,19 @@
-<div class="page-header">
-  <h1>All Posts</h1>
-</div>
+<h1>Feed</h1>
 
-<div class="row">
-  <div class="col-md-12">
-    <% @posts.each do |post| %><br>
-      <h4><%= post.title %></h4>
-      <% if post.game  %>
-      <h5>Posted on <%= link_to post.game.title, game_path(post.game) %></h5>
-      <% end %>
-      <h6><%= link_to post.player.name, player_path(post.player) %></h6>
-      <%= post.created_at %><br>
-      <%= post.content %>
+<% @posts.each do |post| %><br>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= post.title %></h3>
+  </div>
+  <div class="panel-body">
+    <% if post.game  %>
+    <h5>Posted on <%= link_to post.game.title, game_path(post.game) %></h5>
     <% end %>
+    <h6>Posted by <%= link_to post.player.name, player_path(post.player) %></h6>
+    <%= post.content %>
+  </div>
+  <div class="panel-footer">
+    <%= post.created_at %>
   </div>
 </div>
+<% end %>

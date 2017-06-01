@@ -1,58 +1,58 @@
-<h1>Profile </h1>
-
-
 
 <div class="row">
-  <div class="col-md-1">
-  <%= form_tag upvote_path do %>
-    <button type="submit" class="btn btn-default btn-lg" value="<% @player.up_points %>">
-    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= @player.up_points %> </span>
-    </button>
+  <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="<%= @player.avatar_url.to_s %>" alt="profile_image">
+        <div class="caption">
+          <h3><%= @player.name %></h3>
 
-    <%= hidden_field_tag :id, @player.id %>
+          <% if current_player && @player.id == current_player.id %>
+            <%= link_to "Edit", edit_player_path(@player) %>
+          <% end %>
+          <p>
+          email: <%= @player.email %><br>
+          skill level: <%= @player.skill_level %><br>
+          birthday: <%= @player.birthday %><br>
+          location: <%= @player.location %><br>
+          phone number: <%= @player.phone_number %><br>
+          </p>
+          <div class="row">
+            <div class="col-md-3">
+            <%= form_tag upvote_path do %>
+              <button type="submit" class="btn btn-default btn-lg" value="<% @player.up_points %>">
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= @player.up_points %> </span>
+              </button>
+              <%= hidden_field_tag :id, @player.id %>
+            <% end %>
+          </div>
 
-  <% end %>
-</div>
+            <div class="col-md-3">
+            <%= form_tag downvote_path do %>
+            <button type="submit" class="btn btn-default btn-lg" value="<% @player.down_points %>">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"> <%= @player.down_points %> </span>
+            </button>
+            <%= hidden_field_tag :id, @player.id %>
+            <% end %>
+          </div>
+        </div>
 
-  <div class="col-md-1">
-  <%= form_tag downvote_path do %>
-  <button type="submit" class="btn btn-default btn-lg" value="<% @player.down_points %>">
-  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"> <%= @player.down_points %> </span>
-  </button>
-  <%= hidden_field_tag :id, @player.id %>
-  <% end %>
-  </div>
 
-  <div class="col-md-1">
-  <% if logged_in? %>
-    <% if @player.id == current_player.id %>
-      <p>Your Profile</p>
-    <% elsif UserFriend.find_by(player_id: current_player.id, friend: @player.id) %>
-      <h6>You and <%= @player.name %> are friends </h6>
-    <% else %>
-      <%= form_for(@user_friend) do |f| %>
-        <%= f.hidden_field :player_id, :value => current_player.id %>
-        <%= f.hidden_field :friend, :value => @player.id %>
-        <%= f.submit "Add Friend" %>
-      <% end %>
+<% if logged_in? %>
+  <% if @player.id == current_player.id %>
+    <p>Your Profile</p>
+  <% elsif UserFriend.find_by(player_id: current_player.id, friend: @player.id) %>
+    <h6>You and <%= @player.name %> are friends </h6>
+  <% else %>
+    <%= form_for(@user_friend) do |f| %>
+      <%= f.hidden_field :player_id, :value => current_player.id %>
+      <%= f.hidden_field :friend, :value => @player.id %>
+      <%= f.submit "Add Friend" %>
     <% end %>
   <% end %>
-  </div>
-</div>
+<% end %>
 
 
-<div class="row">
-<div class="col-md-4">
-<br><br>
-<%= image_tag @player.avatar_url.to_s %><br>
-<%= @player.email %><br>
-<%= @player.skill_level %><br>
-<%= @player.name %><br>
-<%= @player.birthday %><br>
-<%= @player.location %><br>
-<%= @player.phone_number %><br>
-
-<h1>Friends</h1>
+<h3>Friends</h3>
 <% if @player.user_friends %>
   <% @player.user_friends.each do |friend| %>
   <%= link_to Player.find(friend.friend).name, player_path(Player.find(friend.friend))  %><br>
@@ -60,41 +60,48 @@
 
 <% end %>
 
+<h2>Games</h2>
+<h3>Upcoming</h3>
 <% if @player.games %>
   <% @player.games.each do |game| %>
   <% if game.end > Time.now %>
-    <p>Status: Upcoming</p>
-  <% else %>
-    <p>Status: Past</p>
-  <% end %>
-  <h3><%= link_to game.title, game_path(game) %></h3><br>
+  <p>
+  <%= link_to game.title, game_path(game) %><br>
   <%= game.description %><br>
   <%= game.start %><br>
   <%= game.end %><br>
-  <br>
-  <% end %>
+  </p>
+   <% end %>
+ <% end %>
 <% end %>
 
-<br><br><br>
+<h3>Game History</h3>
+<% if @player.games %>
+  <% @player.games.each do |game| %>
+  <% if game.end < Time.now %>
+  <p><%= link_to game.title, game_path(game) %></p><br>
+   <% end %>
+ <% end %>
+<% end %>
 
 
+</div>
+
+</div>
 </div>
 
 
 
 
 <div class="col-md-8">
-
 <% if logged_in? %>
+<h3>Create a post...</h3>
   <%= form_for(@post) do |f| %>
   <div class="form-group">
     <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.text_area :content, placeholder: "Content", class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.hidden_field :player_id, :value => @player.id, class: "form-control" %>
   </div>
   <%= f.hidden_field :player_id, :value => @player.id %>
   <%= f.submit class: "btn btn-default" %>
@@ -106,11 +113,23 @@
 
 <% if @player.posts %>
   <% @player.posts.each do |post| %><br>
-    <h4><%= post.title %></h4>
-    <%= post.created_at %><br>
-    <%= post.content %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= post.title %></h3>
+    </div>
+    <div class="panel-body">
+      <%= post.content %>
+    </div>
+    <div class="panel-footer">
+      <%= post.created_at %>
+    </div>
+  </div>
   <% end %>
 <% end %>
+
+
+
+
 
 
 
