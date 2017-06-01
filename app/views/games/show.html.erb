@@ -36,3 +36,15 @@
     <%= f.submit %>
   <% end %>
 <% end %>
+
+
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <% if post.game_id == @game.id %>
+    <h4><%= post.title %></h4>
+    <h6><%= link_to post.player.name, player_path(post.player) %></h6>
+    <%= post.created_at %><br>
+    <%= post.content %>
+    <% end %>
+  <% end %>
+<% end %>
