@@ -34,6 +34,16 @@ class PlayersController < ApplicationController
     @user_friend =UserFriend.new
   end
 
+  def edit
+    @player = Player.find(params[:id])
+  end
+
+  def update
+    @player = Player.find(params[:id])
+    @player.update(player_params)
+    redirect_to player_path(@player)
+  end
+
   def up_points
     @player = Player.find(params[:id])
     @player.up_points = @player.up_points + 1
@@ -59,7 +69,7 @@ class PlayersController < ApplicationController
   private
 
   def player_params
-    params.require(:player).permit(:name, :birthday, :location, :phone_number, :email, :password)
+    params.require(:player).permit(:name, :skill_level, :birthday, :location, :phone_number, :email, :password)
   end
 
 
