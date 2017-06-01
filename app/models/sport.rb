@@ -3,11 +3,10 @@ class Sport < ApplicationRecord
 
   def self.popular_sports
     Sport.
-    select("sports.*, count(games.id)").
+    select("sports.*, count(games.id) AS games_count").
     joins(:games).
     group("sports.id").
-    order("count(games.id) DESC").
-    limit(10)
+    order("games_count DESC")
   end
 
 end
