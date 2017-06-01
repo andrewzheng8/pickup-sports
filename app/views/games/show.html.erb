@@ -6,6 +6,15 @@
 <%= @game.end %><br>
 <%= @game.sport.name %><br>
 
+<% if @game.location %>
+
+  <% if @game.location.title != ""%>
+    <p>@ <%= link_to @game.location.title, location_path(@game.location) %> </p>
+  <% else %>
+    <p>@ <%= link_to @game.location.address, location_path(@game.location) %> </p> 
+  <% end %>
+<% end %>
+
 <p>Players: </p>
 <% @game.players.each do |player| %>
   <%= link_to player.email, player_path(player) %><br>

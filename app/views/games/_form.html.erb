@@ -19,5 +19,9 @@
     <%= f.label :sport_id, "Sport" %>
     <%= f.collection_select :sport_id, Sport.all, :id, :name, {prompt: "Select a sport"}, {class: "form-control"} %>
   </div>
+  <div class="form-group">
+    <%= f.label :location_id, "Location" %>
+    <%= f.collection_select :location_id, Location.all, :id, :title, {prompt: "Select a location"}, {class: "form-control"} %>
+  </div>
   <%= f.submit class: "btn btn-default" %>
 <% end %>

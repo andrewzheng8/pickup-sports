@@ -10,9 +10,12 @@
     <% end %>
   </div>
 
-  <button type="button" class="btn btn-default btn-lg" onclick= "location.href='<%=new_location_path%>'" >
+  <%= link_to new_location_path  do%>
+  <button type="button" class="btn btn-default btn-lg" >
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
   </button>
+  <% end %>
+
 
   <% if params[:locations] %>
     <h2>Search Results</h2>
