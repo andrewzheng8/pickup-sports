@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     delete '/logout', to:"sessions#destroy"
     post '/current_loc', to: 'sessions#current_loc', as: :loc_input
     delete '/change_loc', to: 'sessions#change_loc', as: :loc_change
-
+    post '/upvote', to:'players#up_points', as:'/upvote'
+    post '/downvote', to:'players#down_points', as:'/downvote'
 
 
     resources :players
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
     resources :sports
     resources :locations
     resources :player_games
+    resources :user_friends
 
 end

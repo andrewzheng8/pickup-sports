@@ -4,6 +4,10 @@
   <%= f.text_field :name, placeholder: "name", class: "form-control" %>
 </div>
 <div class="form-group">
+  <%= f.label :skill_level %>
+  <%= f.select :skill_level, [['Beginner', 'Beginner'],['Intermediate','Intermediate'],['Collegiate','Collegiate'], ['Professional','Professional']], placeholder: "Skill Level", class: "form-control" %>
+</div>
+<div class="form-group">
   <%= f.label :birthday %>
   <%= f.datetime_local_field :birthday, placeholder: "birthday", class: "form-control" %>
 </div>

@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 20170601133000) do
     t.string "location"
     t.date "birthday"
     t.integer "phone_number"
+    t.integer "up_points", default: 0
+    t.integer "down_points", default: 0
+    t.string "skill_level"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -76,7 +79,16 @@ ActiveRecord::Schema.define(version: 20170601133000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_friends", force: :cascade do |t|
+    t.bigint "player_id"
+    t.integer "friend"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_user_friends_on_player_id"
+  end
+
   add_foreign_key "games", "sports"
   add_foreign_key "player_games", "games"
   add_foreign_key "player_games", "players"
+  add_foreign_key "user_friends", "players"
 end

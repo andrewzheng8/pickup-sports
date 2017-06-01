@@ -1,3 +1,19 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.thumbnail{
+  position:relative;
+}
+
+.thumbnail-caption-top {
+  position: absolute;
+  margin: 10px;
+  top: 0px;
+}
+
+.thumbnail-caption-bottom {
+  position: absolute;
+  margin: 10px;
+  bottom: 0px;
+}

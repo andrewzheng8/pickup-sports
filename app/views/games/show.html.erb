@@ -16,38 +16,32 @@
 <% end %>
 
 <p>Players: </p>
-<% @game.players.each do |player| %>
-  <%= link_to player.email, player_path(player) %><br>
+<% if @game.players %>
+  <% @game.players.each do |player| %>
+    <%= link_to player.email, player_path(player) %><br>
+  <% end %>
 <% end %>
+
 
 <% if logged_in? %>
 <p><%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Delete",  game_path(@game), method: :delete %></p>
-
   <%= form_for(@player_game) do |f| %>
   <%= f.hidden_field :game_id, :value => @game.id %>
   <%= f.submit %>
   <% end %>
-
 <% else %>
 <p>Log in to edit or delete</p>
 <% end %>
 
 
-<%= form_for(@post) do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :content %><br>
-  <%= f.text_field :content %><br>
-  <%= f.hidden_field :player_id, :value => current_player.id %>
-  <%= f.hidden_field :game_id, :value => @game.id %>
-  <%= f.submit %>
-<% end %>
-
-<% @posts.each do |post| %>
-  <% if post.game_id == @game.id %>
-  <h4><%= post.title %></h4>
-  <h6><%= link_to post.player.name, player_path(post.player) %></h6>
-  <%= post.created_at %><br>
-  <%= post.content %>
+<% if logged_in? %>
+  <%= form_for(@post) do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.label :content %><br>
+    <%= f.text_field :content %><br>
+    <%= f.hidden_field :player_id, :value => current_player.id %>
+    <%= f.hidden_field :game_id, :value => @game.id %>
+    <%= f.submit %>
   <% end %>
 <% end %>
