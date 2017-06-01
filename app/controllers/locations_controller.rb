@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :verify, except: [:index, :show]
+  
   def index
     if params[:locations]
       @locations = Location.where("LOWER(title) LIKE ?", "%#{params[:locations].downcase}%")

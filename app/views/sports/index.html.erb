@@ -9,13 +9,31 @@
   <% end %>
 </div>
 
-<% if params[:sports] %>
-  <h2>Search Results</h2>
-  <% results = @sports.count %>
-  <p><%= results %> <%= results == 1 ? "match" : "matches" %> found</p>
-<% else %>
-  <h2>Viewing All Sports</h2>
-<% end %>
-<% @sports.each do |sport| %>
-  <%= link_to sport.name, sport_path(sport) %><br>
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to new_sport_path  do%>
+    <button type="button" class="btn btn-default" >
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create sport
+    </button>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% if params[:sports] %>
+      <h2>Search Results</h2>
+      <% results = @sports.count %>
+      <p><%= results %> <%= results == 1 ? "match" : "matches" %> found</p>
+    <% else %>
+      <h2>Viewing All Sports</h2>
+    <% end %>
+    <% @sports.each do |sport| %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to sport.name, sport_path(sport) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

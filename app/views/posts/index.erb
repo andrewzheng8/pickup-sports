@@ -1,11 +1,17 @@
-<h1>All Posts</h1>
+<div class="page-header">
+  <h1>All Posts</h1>
+</div>
 
-<% @posts.each do |post| %><br>
-  <h4><%= post.title %></h4>
-  <% if post.game  %>
-  <h5>Posted on <%= link_to post.game.title, game_path(post.game) %></h5>
-  <% end %>
-  <h6><%= link_to post.player.name, player_path(post.player) %></h6>
-  <%= post.created_at %><br>
-  <%= post.content %>
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <% @posts.each do |post| %><br>
+      <h4><%= post.title %></h4>
+      <% if post.game  %>
+      <h5>Posted on <%= link_to post.game.title, game_path(post.game) %></h5>
+      <% end %>
+      <h6><%= link_to post.player.name, player_path(post.player) %></h6>
+      <%= post.created_at %><br>
+      <%= post.content %>
+    <% end %>
+  </div>
+</div>
