@@ -22,11 +22,11 @@
 
 <script type="text/javascript">
 
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+  var handler2 = Gmaps.build('Google');
+  handler2.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  var markers = handler2.addMarkers(<%=raw @hash.to_json %>);
+  handler2.bounds.extendWith(markers);
+  handler2.fitMapToBounds();
   });
 
 </script>

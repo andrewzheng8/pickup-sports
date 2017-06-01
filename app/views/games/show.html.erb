@@ -1,59 +1,105 @@
-<h1>View Game</h1>
+<script src="//maps.google.com/maps/api/js?key=AIzaSyAl770BT-wyec7H4sLWYjM4bvsJgJk9dH4"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 
-<%= @game.title %><br>
-<%= @game.description %><br>
-<%= @game.start %><br>
-<%= @game.end %><br>
-<%= @game.sport.name %><br>
-
-<% if @game.location %>
-
-  <% if @game.location.title != ""%>
-    <p>@ <%= link_to @game.location.title, location_path(@game.location) %> </p>
-  <% else %>
-    <p>@ <%= link_to @game.location.address, location_path(@game.location) %> </p> 
-  <% end %>
-<% end %>
-
-<p>Players: </p>
-<% if @game.players %>
-  <% @game.players.each do |player| %>
-    <%= link_to player.email, player_path(player) %><br>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="" alt="profile_image">
 
 
-<% if logged_in? %>
-<p><%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Delete",  game_path(@game), method: :delete %></p>
-  <%= form_for(@player_game) do |f| %>
-  <%= f.hidden_field :game_id, :value => @game.id %>
-  <%= f.submit "Join Game" %>
-  <% end %>
-<% else %>
-<p>Log in to edit or delete</p>
-<% end %>
 
 
-<% if logged_in? %>
-  <%= form_for(@post) do |f| %>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %><br>
-    <%= f.label :content %><br>
-    <%= f.text_field :content %><br>
+        <div class="caption">
+          <h3><%= @game.title %></h3>
+          <% if logged_in? %>
+          <p><%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Delete",  game_path(@game), method: :delete %></p>
+            <%= form_for(@player_game) do |f| %>
+            <%= f.hidden_field :game_id, :value => @game.id %>
+            <%= f.submit "Join Game" %>
+            <% end %>
+          <% else %>
+          <p>Log in to edit or delete</p>
+          <% end %>
+          <p>
+           Description: <%= @game.description %><br>
+           <% if @game.location %>
+            Location: <%= @game.location.address %><br>
+            <% else %>
+            Location: TBD <br>
+           <% end %>
+           Start Time/Date: <%= @game.start %><br>
+           End Time/Date: <%= @game.end %><br>
+           Sport: <%= @game.sport.name %><br>
+           <% if @game.location %>
+             <% if @game.location.title != ""%>
+               <p>@ <%= link_to @game.location.title, location_path(@game.location) %> </p>
+             <% else %>
+               <p>@ <%= link_to @game.location.address, location_path(@game.location) %> </p>
+             <% end %>
+           <% end %>
+           <h4>Players: </h4>
+           <% if @game.players %>
+             <% @game.players.each do |player| %>
+               <%= link_to player.name, player_path(player) %><br>
+             <% end %>
+           <% end %>
+          </p>
+        </div>
+      </div>
+  </div>
+
+
+  <div class="col-md-8">
+  <% if logged_in? %>
+  <h3>Create a post...</h3>
+    <%= form_for(@post) do |f| %>
+    <div class="form-group">
+      <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_area :content, placeholder: "Content", class: "form-control" %>
+    </div>
     <%= f.hidden_field :player_id, :value => current_player.id %>
     <%= f.hidden_field :game_id, :value => @game.id %>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-default" %>
   <% end %>
-<% end %>
+  <% end %>
+
+  <br><br>
 
 
 <% if @posts %>
   <% @posts.each do |post| %>
     <% if post.game_id == @game.id %>
-    <h4><%= post.title %></h4>
-    <h6><%= link_to post.player.name, player_path(post.player) %></h6>
-    <%= post.created_at %><br>
-    <%= post.content %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= post.title %></h3>
+      </div>
+      <div class="panel-body">
+        <%= link_to post.player.name, player_path(post.player) %><br>
+        <%= post.content %>
+      </div>
+      <div class="panel-footer">
+        <%= post.created_at %>
+      </div>
+    </div>
     <% end %>
   <% end %>
 <% end %>
+ </div>
+</div>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script type="text/javascript">
+
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  var markers = handler.addMarkers(<%= raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  });
+
+</script>

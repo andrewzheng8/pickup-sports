@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :verify, except: [:index, :show]
-  
+
   def index
     if params[:games]
       @games = Game.where("LOWER(title) LIKE ?", "%#{params[:games].downcase}%")
@@ -28,6 +28,14 @@ class GamesController < ApplicationController
     @post = Post.new
     @posts = Post.all
     @player_game = PlayerGame.new
+    if @game.location
+      @location = @game.location
+      @locations_arr = [@location]
+      @hash = Gmaps4rails.build_markers(@locations_arr) do |loc, marker|
+        marker.lat loc.latitude
+        marker.lng loc.longitude
+      end
+    end
   end
 
   def edit
