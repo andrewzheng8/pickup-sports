@@ -45,6 +45,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'carrierwave', '~> 1.0'
 end
 
 group :development do
