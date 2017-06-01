@@ -2,19 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.thumbnail {
-  position: relative;
-  max-height: 150px;
-  overflow: hidden;
-  .thumbnail-image {
-    max-height: 140px;
+.sports-grid {
+  .thumbnail {
+    position: relative;
+    max-height: 150px;
     overflow: hidden;
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      margin-left: auto;
-      margin-right: auto;
+    .thumbnail-image {
+      max-height: 140px;
+      overflow: hidden;
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
   }
 }
