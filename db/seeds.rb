@@ -14,14 +14,13 @@ year = 365*day
 tomorrow = now + day
 
 # sports
-soccer = Sport.create(name: "Soccer")
-basketball = Sport.create(name: "Basketball")
-football = Sport.create(name: "Football")
-baseball = Sport.create(name: "Baseball")
-tennis = Sport.create(name: "Tennis")
-frisbee = Sport.create(name: "Frisbee")
-hockey = Sport.create(name: "Hockey")
-kickball = Sport.create(name: "Kickball")
+soccer = Sport.create(name: "Soccer", image: "https://images.unsplash.com/photo-1451256656121-9ffc0c898a49?dpr=2&auto=compress,format&fit=crop&w=376&h=251&q=80&cs=tinysrgb&crop=&bg=")
+basketball = Sport.create(name: "Basketball", image: "https://images.unsplash.com/photo-1465516001080-8d478e10a809?dpr=2&auto=compress,format&fit=crop&w=376&h=251&q=80&cs=tinysrgb&crop=&bg=")
+football = Sport.create(name: "Football", image: "https://images.unsplash.com/photo-1475171272919-d65b555848d7?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=&bg=")
+baseball = Sport.create(name: "Baseball", image: "https://images.unsplash.com/photo-1446081946562-2c5d033dc469?dpr=2&auto=compress,format&fit=crop&w=376&h=251&q=80&cs=tinysrgb&crop=&bg=")
+tennis = Sport.create(name: "Tennis", image: "https://images.unsplash.com/photo-1485908953667-cf6d88997642?dpr=2&auto=compress,format&fit=crop&w=376&h=261&q=80&cs=tinysrgb&crop=&bg=")
+frisbee = Sport.create(name: "Frisbee", image: "https://images.unsplash.com/photo-1492162597297-375fb95047ad?dpr=2&auto=compress,format&fit=crop&w=376&h=282&q=80&cs=tinysrgb&crop=&bg=")
+hockey = Sport.create(name: "Hockey", image: "https://images.unsplash.com/photo-1494422000699-4261dcaf4057?dpr=2&auto=compress,format&fit=crop&w=376&h=282&q=80&cs=tinysrgb&crop=&bg=")
 
 # games
 soccer1 = Game.create(title: "Soccer Game 1", description: "Meet up and play some soccer", start: tomorrow, end: tomorrow+hour, sport_id: soccer.id)
