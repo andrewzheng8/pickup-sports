@@ -11,15 +11,17 @@
 
 
 
-<% if @player.id == current_player.id %>
-  <p>Your Profile</p>
-<% elsif UserFriend.find_by(player_id: current_player.id, friend: @player.id) %>
-  <h6>You and <%= @player.name %> are friends </h6>
-<% else %>
-  <%= form_for(@user_friend) do |f| %>
-    <%= f.hidden_field :player_id, :value => current_player.id %>
-    <%= f.hidden_field :friend, :value => @player.id %>
-    <%= f.submit "Add Friend" %>
+<% if logged_in? %>
+  <% if @player.id == current_player.id %>
+    <p>Your Profile</p>
+  <% elsif UserFriend.find_by(player_id: current_player.id, friend: @player.id) %>
+    <h6>You and <%= @player.name %> are friends </h6>
+  <% else %>
+    <%= form_for(@user_friend) do |f| %>
+      <%= f.hidden_field :player_id, :value => current_player.id %>
+      <%= f.hidden_field :friend, :value => @player.id %>
+      <%= f.submit "Add Friend" %>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -32,39 +34,48 @@
 <%= @player.location %><br>
 <%= @player.phone_number %><br>
 
-<%= form_for(@post) do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :content %><br>
-  <%= f.text_field :content %><br>
-  <%= f.hidden_field :player_id, :value => @player.id %>
-  <%= f.submit %>
+<% if logged_in? %>
+  <%= form_for(@post) do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.label :content %><br>
+    <%= f.text_field :content %><br>
+    <%= f.hidden_field :player_id, :value => @player.id %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
 
-<% @player.posts.each do |post| %><br>
-  <h4><%= post.title %></h4>
-  <%= post.created_at %><br>
-  <%= post.content %>
+<% if @player.posts %>
+  <% @player.posts.each do |post| %><br>
+    <h4><%= post.title %></h4>
+    <%= post.created_at %><br>
+    <%= post.content %>
+  <% end %>
 <% end %>
 
 
-<% @player.games.each do |game| %>
-<% if game.end > Time.now %>
-  <p>Status: Upcoming</p>
-<% else %>
-  <p>Status: Past</p>
-<% end %>
-<h3><%= link_to game.title, game_path(game) %></h3><br>
-<%= game.description %><br>
-<%= game.start %><br>
-<%= game.end %><br>
-<br>
+<% if @player.games %>
+  <% @player.games.each do |game| %>
+  <% if game.end > Time.now %>
+    <p>Status: Upcoming</p>
+  <% else %>
+    <p>Status: Past</p>
+  <% end %>
+  <h3><%= link_to game.title, game_path(game) %></h3><br>
+  <%= game.description %><br>
+  <%= game.start %><br>
+  <%= game.end %><br>
+  <br>
+  <% end %>
 <% end %>
 
 <br><br><br>
 
+
 <h1>Friends</h1>
-<% @player.user_friends.each do |friend| %>
-<%= link_to Player.find(friend.friend).name, player_path(Player.find(friend.friend))  %><br>
+<% if @player.user_friends %>
+  <% @player.user_friends.each do |friend| %>
+  <%= link_to Player.find(friend.friend).name, player_path(Player.find(friend.friend))  %><br>
+<% end %>
 
 <% end %>
