@@ -1,6 +1,6 @@
 class SportsController < ApplicationController
   before_action :verify, except: [:index, :show]
-  
+
   def index
     if params[:sports]
       @sports = Sport.where("LOWER(name) LIKE ?", "%#{params[:sports].downcase}%")
@@ -27,11 +27,18 @@ class SportsController < ApplicationController
   end
 
   def edit
+    @sport = Sport.find(params[:id])
+  end
+
+  def update
+    @sport = Sport.find(params[:id])
+    @sport.update(sports_params)
+    redirect_to sport_path(@sport)
   end
 
   private
 
   def sports_params
-    params.require(:sport).permit(:name)
+    params.require(:sport).permit(:name, :image)
   end
 end
