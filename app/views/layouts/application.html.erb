@@ -74,6 +74,9 @@
     <% flash.each do |key, val| %>
       <div class="alert alert-<%= key %>"><%= val %></div>
     <% end %>
-    <%= yield %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
