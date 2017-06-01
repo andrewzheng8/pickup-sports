@@ -1,4 +1,6 @@
 class SportsController < ApplicationController
+  before_action :verify, except: [:index, :show]
+  
   def index
     if params[:sports]
       @sports = Sport.where("LOWER(name) LIKE ?", "%#{params[:sports].downcase}%")

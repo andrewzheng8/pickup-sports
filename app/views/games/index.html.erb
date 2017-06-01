@@ -9,13 +9,31 @@
   <% end %>
 </div>
 
-<% if params[:games] %>
-  <h2>Search Results</h2>
-  <% results = @games.count %>
-  <p><%= results %> <%= results == 1 ? "match" : "matches" %> found</p>
-<% else %>
-  <h2>Viewing All Games</h2>
-<% end %>
-<% @games.each do |game| %>
-  <%= link_to game.title, game_path(game) %><br>
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to new_game_path  do%>
+    <button type="button" class="btn btn-default" >
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create game
+    </button>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% if params[:games] %>
+      <h2>Search Results</h2>
+      <% results = @games.count %>
+      <p><%= results %> <%= results == 1 ? "match" : "matches" %> found</p>
+    <% else %>
+      <h2>Viewing All Games</h2>
+    <% end %>
+    <% @games.each do |game| %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to game.title, game_path(game) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :verify, except: [:index, :show]
+  
   def index
     if params[:games]
       @games = Game.where("LOWER(title) LIKE ?", "%#{params[:games].downcase}%")
