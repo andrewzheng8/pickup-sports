@@ -18,7 +18,7 @@
 <p><%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Delete",  game_path(@game), method: :delete %></p>
   <%= form_for(@player_game) do |f| %>
   <%= f.hidden_field :game_id, :value => @game.id %>
-  <%= f.submit %>
+  <%= f.submit "Join Game" %>
   <% end %>
 <% else %>
 <p>Log in to edit or delete</p>
