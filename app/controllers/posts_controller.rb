@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save && post_params[:game_id] == nil
-      redirect_to player_path(current_player)
+      redirect_to player_path(Player.find(post_params[:player_id]))
     elsif @post.save && post_params[:game_id] != nil
       redirect_to game_path(Game.find(post_params[:game_id].to_i))
     else

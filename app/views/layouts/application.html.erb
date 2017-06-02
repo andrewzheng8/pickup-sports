@@ -40,7 +40,7 @@
           <!-- player login -->
           <% if logged_in? %>
             <p class="navbar-text navbar-right">
-              <%= "Hi, #{current_player.email}!" %>
+              <%= link_to "Hi, #{current_player.email}!", player_path(current_player) %>
               <%= link_to "Log Out", logout_path, method: :delete %>
             </p>
           <% else %>
@@ -77,6 +77,13 @@
     <% flash.each do |key, val| %>
       <div class="alert alert-<%= key %>"><%= val %></div>
     <% end %>
-    <%= yield %>
+
+    <% if @landing %>
+      <%= yield %>
+    <% else %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    <% end %>
   </body>
 </html>

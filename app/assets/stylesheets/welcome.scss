@@ -1,19 +1,43 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.jumbotron {
+  background-image: url("https://images.pexels.com/photos/240832/pexels-photo-240832.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb");
+  background-color: #17234E;
+  margin-bottom: 0;
+  min-height: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  height: 500px;
+  h1, p {
+    color: white !important;
+  }
+}
 
-.thumbnail{
-  position:relative;
+.sports-grid {
+  display:flex;
+  flex-wrap: wrap;
+  .thumbnail {
+    position: relative;
+  }
 }
 
 .thumbnail-caption-top {
   position: absolute;
   margin: 10px;
   top: 0px;
+  background: rgb(64, 64, 64); /* Fallback for older browsers without RGBA-support */
+  background: rgba(64, 64, 64, 0.8);
+  color: white;
 }
 
 .thumbnail-caption-bottom {
   position: absolute;
   margin: 10px;
   bottom: 0px;
+  background: rgb(64, 64, 64); /* Fallback for older browsers without RGBA-support */
+  background: rgba(64, 64, 64, 0.8);
+  color: white;
 }
