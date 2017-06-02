@@ -69,7 +69,8 @@
 
 
 <% if @posts %>
-  <% @posts.each do |post| %>
+<% sorted_posts = @posts.sort_by{|post| post.created_at }.reverse %>
+  <% sorted_posts.each do |post| %>
     <% if post.game_id == @game.id %>
     <div class="panel panel-default">
       <div class="panel-heading">

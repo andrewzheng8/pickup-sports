@@ -1,6 +1,8 @@
 <h1>Feed</h1>
 
-<% @posts.each do |post| %><br>
+<% sorted_posts = @posts.sort_by{|post| post.created_at }.reverse %>
+
+<% sorted_posts.each do |post| %><br>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><%= post.title %></h3>
