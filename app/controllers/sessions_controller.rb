@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def current_loc
-    @location = Location.new(address: params[:address])
+    @location = Location.new(address: params[:address], title: "Your Location")
     if @location.save
       session[:loc_id] = @location.id
       flash[:success] = "You've successfully entered a location"
