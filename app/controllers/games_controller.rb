@@ -19,6 +19,11 @@ class GamesController < ApplicationController
     if @game.save
       redirect_to game_path(@game)
     else
+      if @game.errors.any?
+        flash[:danger] = @game.errors.full_messages
+      else
+        flash[:danger] = "There was an error with your submission"
+      end
       render :new
     end
   end

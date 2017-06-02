@@ -18,6 +18,11 @@ class SportsController < ApplicationController
     if @sport.save
       redirect_to sport_path(@sport)
     else
+      if @sport.errors.any?
+        flash[:danger] = @sport.errors.full_messages
+      else
+        flash[:danger] = "There was an error with your submission"
+      end
       render :new
     end
   end

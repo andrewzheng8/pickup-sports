@@ -10,10 +10,10 @@ class PlayerGamesController < ApplicationController
   def create
     @player_game = PlayerGame.new(player_id: current_player.id, game_id: pg_params[:game_id].to_i)
     if @player_game.save
-      redirect_to player_path(current_player)
+      redirect_to game_path(Game.find(pg_params[:game_id]))
     else
       flash[:danger] = "Did not save"
-      redirect_to player_path(current_player)
+      redirect_to game_path(Game.find(pg_params[:game_id]))
     end
   end
 
