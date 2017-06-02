@@ -61,7 +61,7 @@
     <div class="form-group">
       <%= f.text_area :content, placeholder: "Content", class: "form-control" %>
     </div>
-    <%= f.hidden_field :player_id, :value => current_player.id %>
+    <%= f.hidden_field :poster_id, :value => current_player.id %>
     <%= f.hidden_field :game_id, :value => @game.id %>
     <%= f.submit class: "btn btn-default" %>
   <% end %>
@@ -71,14 +71,15 @@
 
 
 <% if @posts %>
-  <% @posts.each do |post| %>
+<% sorted_posts = @posts.sort_by{|post| post.created_at }.reverse %>
+  <% sorted_posts.each do |post| %>
     <% if post.game_id == @game.id %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%= post.title %></h3>
       </div>
       <div class="panel-body">
-        <%= link_to post.player.name, player_path(post.player) %><br>
+        <p> posted by <%= link_to post.poster.name, player_path(post.poster) %> </p> 
         <%= post.content %>
       </div>
       <div class="panel-footer">

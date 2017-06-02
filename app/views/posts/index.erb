@@ -1,6 +1,8 @@
 <h1>Feed</h1>
 
-<% @posts.each do |post| %><br>
+<% sorted_posts = @posts.sort_by{|post| post.created_at }.reverse %>
+
+<% sorted_posts.each do |post| %><br>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><%= post.title %></h3>
@@ -9,7 +11,7 @@
     <% if post.game  %>
     <h5>Posted on <%= link_to post.game.title, game_path(post.game) %></h5>
     <% end %>
-    <h6>Posted by <%= link_to post.player.name, player_path(post.player) %></h6>
+    <h6>Posted by <%= link_to post.poster.name, player_path(post.poster) %></h6>
     <%= post.content %>
   </div>
   <div class="panel-footer">

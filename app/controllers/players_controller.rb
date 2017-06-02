@@ -31,7 +31,7 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
     @post = Post.new
-    @user_friend =UserFriend.new
+    @user_friend = UserFriend.new
   end
 
   def edit

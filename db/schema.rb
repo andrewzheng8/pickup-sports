@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170602151612) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170602151612) do
     t.bigint "player_id"
     t.bigint "game_id"
     t.bigint "poster_id"
+
     t.index ["game_id"], name: "index_posts_on_game_id"
     t.index ["player_id"], name: "index_posts_on_player_id"
     t.index ["poster_id"], name: "index_posts_on_poster_id"
