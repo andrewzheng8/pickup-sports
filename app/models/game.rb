@@ -5,6 +5,8 @@ class Game < ApplicationRecord
   has_many :posts
   belongs_to :location, optional: true
 
+  validates :title, presence: true
+
 
   def pretty_start
     self.start.strftime("%b %-d, %l:%M %p")

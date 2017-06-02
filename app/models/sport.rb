@@ -1,5 +1,7 @@
 class Sport < ApplicationRecord
   has_many :games
+  validates :name, presence: true, uniqueness: true
+  validates :image, presence: true
 
   def self.popular_sports
     Sport.

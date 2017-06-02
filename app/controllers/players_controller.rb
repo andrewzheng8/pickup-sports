@@ -22,7 +22,11 @@ class PlayersController < ApplicationController
         flash[:success] = "You have successfully signed up!"
         redirect_to games_path
       else
-        flash[:error] = "Sign Up Error"
+        if @player.errors.any?
+          flash[:danger] = @player.errors.full_messages
+        else
+          flash[:danger] = "There was an error with your submission"
+        end
       end
     end
   end

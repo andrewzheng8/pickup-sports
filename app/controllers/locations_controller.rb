@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :verify, except: [:index, :show]
-  
+
   def index
     if params[:locations]
       @locations = Location.where("LOWER(title) LIKE ?", "%#{params[:locations].downcase}%")
@@ -18,6 +18,11 @@ class LocationsController < ApplicationController
     if @location.save
       redirect_to location_path(@location)
     else
+      if @location.errors.any?
+        flash[:danger] = @location.errors.full_messages
+      else
+        flash[:danger] = "There was an error with your submission"
+      end
       render :new
     end
   end

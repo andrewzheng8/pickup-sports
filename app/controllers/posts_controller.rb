@@ -14,8 +14,12 @@ class PostsController < ApplicationController
     elsif @post.save && post_params[:game_id] != nil
       redirect_to game_path(Game.find(post_params[:game_id].to_i))
     else
-      flash[:danger] = "Error posting"
-      redirect_to games_path
+      if @post.errors.any?
+        flash[:danger] = @post.errors.full_messages
+      else
+        flash[:danger] = "There was an error with your submission"
+      end
+      redirect_back(fallback_location: root_path)
     end
   end
 
