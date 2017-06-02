@@ -3,7 +3,9 @@
 <div class="row">
   <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
+      <% if @game.sport.image %>
         <img src="<%= @game.sport.image %>" alt="profile_image">
+      <% end %>
         <div class="caption">
           <h3><%= @game.title %></h3>
           <% if logged_in? %>
