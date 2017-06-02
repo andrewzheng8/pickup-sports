@@ -10,6 +10,8 @@
   <div class="panel-body">
     <% if post.game  %>
     <h5>Posted on <%= link_to post.game.title, game_path(post.game) %></h5>
+    <% elsif post.player %>
+      <h5>Posted on <%= link_to post.player.name, player_path(post.player) %>'s page</h5>
     <% end %>
     <h6>Posted by <%= link_to post.poster.name, player_path(post.poster) %></h6>
     <%= post.content %>
