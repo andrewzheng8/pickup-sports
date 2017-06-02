@@ -82,7 +82,17 @@
     </nav>
 
     <% flash.each do |key, val| %>
+      <% if val.is_a?(Array) %>
+        <div class="alert alert-<%= key %>">
+          <ul>
+            <% val.each do |m|%>
+              <li><%= m %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% else %>
       <div class="alert alert-<%= key %>"><%= val %></div>
+      <% end %>
     <% end %>
 
     <% if @landing %>
