@@ -34,6 +34,7 @@ class GamesController < ApplicationController
       @hash = Gmaps4rails.build_markers(@locations_arr) do |loc, marker|
         marker.lat loc.latitude
         marker.lng loc.longitude
+        marker.infowindow loc.title
       end
     end
   end
