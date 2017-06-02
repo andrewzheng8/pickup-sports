@@ -42,3 +42,10 @@ kyle = Player.create(email: "kyle@gmail.com", password: "password", name: "Kyle"
 alex.games << [soccer1, basketball1, frisbee1, frisbee2, frisbee3]
 andrew.games << [soccer1, basketball1, baseball1, frisbee1, frisbee2]
 kyle.games << [basketball2, football1, football2, frisbee1, frisbee2]
+
+
+Post.create(player_id: 1, poster_id: 3, game_id: 1, title: "Game tonight", content: "Hope you're ready to lose!")
+Post.create(player_id: 2, poster_id: 2, game_id: 2, title: "What's Up", content: "Are you playing tonight?")
+Post.create(player_id: 3, poster_id: 1, game_id: 3, title: "Soccerrrrr", content: "Sike idk what sport this is")
+Post.create(player_id: 1, poster_id: 2, title: "I'm Posting!", content: "post post post")
+Post.create(player_id: 2, poster_id: 2, title: "Okayyyyyy", content: "Alrightttttt")
