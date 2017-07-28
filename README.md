@@ -1,24 +1,6 @@
-# README
+# PickUp
+Say you want to find a soccer game or basketball game happening near you that you want to join. PickUp is a social media web application to find pick up games. As a user, you can organize a game, find a game, and join a game of any sport. Each game has its own game page where users can communicate. Authorized user's can also friend other users and send messages directly to them.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Technologies
+Google Maps API - Used create new locations in the database for fields, courts, etc. 
+Ruby on Rails (MVC) - utilized MVC framework to create a full stack Ruby applcation with a PostGRES database
